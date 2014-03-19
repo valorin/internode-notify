@@ -33,10 +33,10 @@ $targetRate    = $remaining / $daysRemaining;
 $lastNotify = file_get_contents(__DIR__ .'/'.NOTIFY_CACHE);
 $notify = false;
 $extra = '';
-if ($targetRate <= ($lastNotify * ((100 - NOTIFY_PERCENTAGE) / 100))) {
+if ($targetRate < ($lastNotify * ((100 - NOTIFY_PERCENTAGE) / 100))) {
     $notify = true;
     $extra  = "\nDOWN from the last alert...";
-} elseif ($targetRate >= ($lastNotify * ((100 + NOTIFY_PERCENTAGE) / 100))) {
+} elseif ($targetRate > ($lastNotify * ((100 + NOTIFY_PERCENTAGE) / 100))) {
     $notify = true;
     $extra  = "\nUP from the last alert...";
 }
