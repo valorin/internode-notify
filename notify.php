@@ -23,9 +23,9 @@ $usage = callApi($url.'/usage');
  * Calculate Remaining
  */
 $remaining     = $service->api->service->quota - $usage->api->traffic;
+$remaining     = ($remaining < 0) ? 0 : $remaining;
 $daysRemaining = intval(((strtotime($service->api->service->rollover)) - time()) / (60*60*24)) + 1;
 $targetRate    = $remaining / $daysRemaining;
-
 
 /**
  * Send email if needed
